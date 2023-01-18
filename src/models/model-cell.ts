@@ -1,4 +1,4 @@
-import { Board } from "./model-board";
+import { IBoard } from "./model-board";
 import { IFigure } from "./model-figure";
 
 export enum Colors {
@@ -6,23 +6,24 @@ export enum Colors {
     BLACK = "black"
 }
 
-export interface Cell {
+export interface ICell {
     x: number;
     y: number;
     color: Colors;
-    board: Board;
+    board: IBoard;
     figure: IFigure | null;
     id: number
 }
 
-export class Cell implements Cell {
-    x;
-    y;
-    color;
+export class ModelCell implements ICell {
+    readonly x;
+    readonly y;
+    readonly color;
     id;
     board;
+    figure
 
-    constructor(board: Board, x: number, y: number, color: Colors, figure: IFigure | null) {
+    constructor(board: IBoard, x: number, y: number, color: Colors, figure: IFigure | null) {
         this.id = x + y;
         this.x = x;
         this.y = y;

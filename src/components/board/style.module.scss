@@ -1,0 +1,7 @@
+.board{
+    width: calc(var(--cell-width) * 8);
+    height: calc(var(--cell-width) * 8);
+    box-shadow: 0 0 7px aqua;
+    display: flex;
+    flex-wrap: wrap;
+}

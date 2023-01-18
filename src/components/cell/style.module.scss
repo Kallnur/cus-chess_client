@@ -1,0 +1,28 @@
+.cell{
+    position: relative;
+    width: var(--cell-width);
+    height: var(--cell-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transition: .1s;
+
+    & img{
+        width: 95%;
+        object-fit: cover;
+        cursor: grab;
+    }
+}
+
+.black{
+    background: #769656;
+}
+.white{
+    background: #eeeed2;
+}
+
+.selected{
+    z-index: 1000;
+    background: #baca44;
+}

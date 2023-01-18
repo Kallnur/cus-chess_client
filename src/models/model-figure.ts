@@ -1,4 +1,4 @@
-import { Cell } from "./model-cell";
+import { Colors, ICell } from "./model-cell";
 
 export enum FigureNames {
     KING = "king",
@@ -10,9 +10,9 @@ export enum FigureNames {
 }
 
 export interface IFigure {
-    cell: Cell;
+    cell: ICell;
     // toSteps: Cell[];
-    isLive: boolean;
+    // isLive: boolean;
     name: string;
     icon: string | null;
     id: number;
@@ -20,28 +20,29 @@ export interface IFigure {
 }
 
 export class Figure implements IFigure {
-    cell: Cell;
+    cell: ICell;
     // toSteps: Cell[];
-    isLive: boolean;
+    // isLive: boolean;
     name: string;
     icon: string | null;
     id: number;
     color: string
 
-    constructor (cell: Cell, name: string, isLive: boolean, icon: string, color: string) {
+    constructor (color: Colors, cell: ICell) {
         this.cell = cell;
-        this.isLive = isLive;
-        this.name = name;
+        // this.isLive = isLive;
+        this.name = "";
+        this.cell.figure = this;
         this.id = Math.random();
-        this.icon = icon;
+        this.icon = null;
         this.color = color;
     }
 
-    chackMove (cell: Cell) {
+    chackMove (cell: ICell) {
         return true
     }
 
-    move(cell: Cell) {
+    move(cell: ICell) {
 
     }
 
