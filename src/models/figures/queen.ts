@@ -14,7 +14,13 @@ export class Queen extends Figure {
 
     public checkMove(cell: ICell) {
         if(!super.checkMove(cell)) return false;
-        return true
+
+        if(this.cell.checkYLine(cell)) return true;
+        if(this.cell.checkXLine(cell)) return true;
+        if(this.cell.checkDiagonal(cell)) return true;
+
+        return false
+
     }
 
 }
