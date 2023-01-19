@@ -13,6 +13,9 @@ export class Bishop extends Figure {
 
     public checkMove(cell: ICell) {
         if(!super.checkMove(cell)) return false;
-        return true
+
+        if(this.cell.checkDiagonal(cell)) return true;
+
+        return false;
     }
 }
