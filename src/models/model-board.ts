@@ -11,6 +11,7 @@ export interface IBoard {
     cells: ICell[][];
     highlightCells: (cell: ICell | null) => void;
     getCopy: () => IBoard;
+    getCell: (x: number, y: number) => ICell;
 }
 
 export class ModelBoard implements IBoard {
