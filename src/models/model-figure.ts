@@ -16,7 +16,9 @@ export interface IFigure {
     name: string;
     icon: string | null;
     id: number;
-    color: string
+    color: string;
+    checkMove: (cell: ICell) => boolean;
+    move: (cell: ICell) => void
 }
 
 export class Figure implements IFigure {
@@ -26,7 +28,7 @@ export class Figure implements IFigure {
     name: string;
     icon: string | null;
     id: number;
-    color: string
+    color: string;
 
     constructor (color: Colors, cell: ICell) {
         this.cell = cell;
@@ -38,12 +40,13 @@ export class Figure implements IFigure {
         this.color = color;
     }
 
-    chackMove (cell: ICell) {
+    public checkMove (cell: ICell) {
+        if(cell.figure?.color === this.color ) return false;
+        if(cell.figure?.name === FigureNames.KING) return false;
         return true
     }
 
     move(cell: ICell) {
-
     }
 
 }

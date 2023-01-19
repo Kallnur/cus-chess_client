@@ -12,4 +12,9 @@ export class Queen extends Figure {
         this.name = FigureNames.QUEEN;
     }
 
+    public checkMove(cell: ICell) {
+        if(!super.checkMove(cell)) return false;
+        return true
+    }
+
 }

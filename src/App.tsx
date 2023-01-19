@@ -12,6 +12,7 @@ function App() {
   const initBoard = () => {
     const newBoard = new ModelBoard();
     newBoard.initCells();
+    newBoard.lineUpFigures();
     setBoard(newBoard)
   }
 
@@ -22,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <div className='wrapper'>
-        <Board board={board}/>
+        <Board board={board} setBoard={setBoard}/>
       </div>
     </div>
   )

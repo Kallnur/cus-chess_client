@@ -10,4 +10,9 @@ export class Bishop extends Figure {
         this.icon = color === Colors.BLACK ? bIcon : wIcon;
         this.name = FigureNames.BISHOP;
     }
+
+    public checkMove(cell: ICell) {
+        if(!super.checkMove(cell)) return false;
+        return true
+    }
 }

@@ -11,4 +11,8 @@ export class Pawn extends Figure {
         this.name = FigureNames.PAWN;
     } 
 
+    public checkMove(cell: ICell) {
+        if(!super.checkMove(cell)) return false;
+        return true
+    }
 }

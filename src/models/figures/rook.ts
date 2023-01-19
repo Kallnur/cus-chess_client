@@ -11,4 +11,8 @@ export class Rook extends Figure {
         this.name = FigureNames.ROOK;
     }
 
+    public checkMove(cell: ICell) {
+        if(!super.checkMove(cell)) return false;
+        return true
+    }
 }

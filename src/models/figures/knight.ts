@@ -10,4 +10,9 @@ export class Knight extends Figure {
         this.icon = color === Colors.BLACK ? bIcon : wIcon;
         this.name = FigureNames.KNIGHT;
     }
+
+    public checkMove(cell: ICell) {
+        if(!super.checkMove(cell)) return false;
+        return true
+    }
 }

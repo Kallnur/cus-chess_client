@@ -12,7 +12,9 @@ export interface ICell {
     color: Colors;
     board: IBoard;
     figure: IFigure | null;
-    id: number
+    id: number;
+    available: boolean;
+    move: (cell: ICell) => void;
 }
 
 export class ModelCell implements ICell {
@@ -21,7 +23,8 @@ export class ModelCell implements ICell {
     readonly color;
     id;
     board;
-    figure
+    figure;
+    available;
 
     constructor(board: IBoard, x: number, y: number, color: Colors, figure: IFigure | null) {
         this.id = x + y;
@@ -29,6 +32,15 @@ export class ModelCell implements ICell {
         this.y = y;
         this.board = board;
         this.color = color;
-        this.figure = figure
+        this.figure = figure;
+        this.available = false
+    }
+
+    move(cell: ICell){
+        if(this.figure && this.figure.checkMove(cell)){
+            this.figure.move(cell);
+            cell.figure = this.figure;
+            this.figure = null;
+        }
     }
 }

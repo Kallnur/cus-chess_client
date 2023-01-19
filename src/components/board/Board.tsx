@@ -1,22 +1,43 @@
 import { IBoard } from '@/models/model-board';
 import { ICell } from '@/models/model-cell';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import Cell from '../cell/Cell';
 import classes from "./style.module.scss"
 
 interface Props {
-  board: IBoard
+  board: IBoard;
+  setBoard: (board: IBoard) => void
 }
 
-const Board = ({board}: Props) => {
+const Board = ({board, setBoard}: Props) => {
 
   const [selectedCell, setSelectedCell] = useState<ICell | null>(null)
 
   const selectCell = (cell: ICell) => {
-    if(cell.figure) setSelectedCell(cell)
-    else setSelectedCell(null)
+
+    if(selectedCell && selectedCell !== cell && selectedCell.figure?.checkMove(cell)){
+      selectedCell.move(cell);
+      setSelectedCell(null)
+
+    } else {
+      setSelectedCell(cell)
+    }
   }
+
+  const updateBoard = () => {
+    const newBoard = board.getCopy();
+    setBoard(newBoard);
+  }
+
+  const highlightCells = () => {
+    board.highlightCells(selectedCell);
+    updateBoard()
+  }
+
+  useEffect(() => {
+    highlightCells();
+  }, [selectedCell])
 
   return (
     <div className={classes.board}>
