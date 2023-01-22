@@ -13,6 +13,9 @@ export class Knight extends Figure {
 
     public checkMove(cell: ICell) {
         if(!super.checkMove(cell)) return false;
-        return true
+        const dx = Math.abs(this.cell.x - cell.x);
+        const dy = Math.abs(this.cell.y - cell.y);
+
+        return (dx === 1 && dy ===2) || (dy === 1 && dx === 2);
     }
 }
