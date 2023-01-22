@@ -20,6 +20,7 @@ export interface ICell {
     checkDiagonal: (cell: ICell) => boolean;
     checkCell: () => boolean;
     setFigure: (figure: IFigure) => void;
+    checkEnemy: (cell: ICell) => boolean;
 }
 
 export class ModelCell implements ICell {
@@ -43,6 +44,14 @@ export class ModelCell implements ICell {
 
     checkCell () {
         return this.figure === null
+    }
+
+    checkEnemy (cell: ICell) {
+        if(cell.figure){
+            return this.figure?.color !== cell.figure.color;
+        }
+
+        return false;
     }
 
     checkYLine (cell: ICell) {
