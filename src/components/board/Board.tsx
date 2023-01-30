@@ -1,5 +1,6 @@
 import { IBoard } from '@/models/model-board';
 import { ICell } from '@/models/model-cell';
+import { IPlayer } from '@/models/model-player';
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import Cell from '../cell/Cell';
@@ -7,10 +8,12 @@ import classes from "./style.module.scss"
 
 interface Props {
   board: IBoard;
-  setBoard: (board: IBoard) => void
+  setBoard: (board: IBoard) => void;
+  currentPlayer: IPlayer | null;
+  swapPlayer: () => void;
 }
 
-const Board = ({board, setBoard}: Props) => {
+const Board = ({board, setBoard, currentPlayer, swapPlayer}: Props) => {
 
   const [selectedCell, setSelectedCell] = useState<ICell | null>(null)
 
@@ -18,10 +21,12 @@ const Board = ({board, setBoard}: Props) => {
 
     if(selectedCell && selectedCell !== cell && selectedCell.figure?.checkMove(cell)){
       selectedCell.move(cell);
+      swapPlayer();
       setSelectedCell(null)
 
     } else {
-      setSelectedCell(cell)
+      if(cell.figure?.color === currentPlayer?.color) setSelectedCell(cell)
+      
     }
   }
 
