@@ -4,7 +4,8 @@ import { IPlayer } from '@/models/model-player';
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import Cell from '../cell/Cell';
-import classes from "./style.module.scss"
+import classes from "./style.module.scss";
+import moveSoundMP3 from "@/assets/sounds/move-sound.mp3";
 
 interface Props {
   board: IBoard;
@@ -12,6 +13,8 @@ interface Props {
   currentPlayer: IPlayer | null;
   swapPlayer: () => void;
 }
+
+const moveSound = new Audio(moveSoundMP3);
 
 const Board = ({board, setBoard, currentPlayer, swapPlayer}: Props) => {
 
@@ -22,6 +25,7 @@ const Board = ({board, setBoard, currentPlayer, swapPlayer}: Props) => {
     if(selectedCell && selectedCell !== cell && selectedCell.figure?.checkMove(cell)){
       selectedCell.move(cell);
       swapPlayer();
+      moveSound.play();
       setSelectedCell(null)
 
     } else {
