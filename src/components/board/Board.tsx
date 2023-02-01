@@ -29,7 +29,7 @@ const Board = ({board, setBoard, currentPlayer, swapPlayer}: Props) => {
       setSelectedCell(null)
 
     } else {
-      /* if(cell.figure?.color === currentPlayer?.color) */ setSelectedCell(cell)
+      if(cell.figure?.color === currentPlayer?.color) setSelectedCell(cell)
       
     }
   }
