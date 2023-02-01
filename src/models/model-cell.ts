@@ -48,7 +48,7 @@ export class ModelCell implements ICell {
 
     checkEnemy (cell: ICell) {
         if(cell.figure){
-            return this.figure?.color !== cell.figure.color;
+            return this.figure?.color !== cell.figure?.color;
         }
 
         return false;

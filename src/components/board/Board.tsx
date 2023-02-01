@@ -14,10 +14,10 @@ interface Props {
   swapPlayer: () => void;
 }
 
-const moveSound = new Audio(moveSoundMP3);
 
 const Board = ({board, setBoard, currentPlayer, swapPlayer}: Props) => {
 
+  const moveSound = new Audio(moveSoundMP3);
   const [selectedCell, setSelectedCell] = useState<ICell | null>(null)
 
   const selectCell = (cell: ICell) => {
@@ -29,7 +29,7 @@ const Board = ({board, setBoard, currentPlayer, swapPlayer}: Props) => {
       setSelectedCell(null)
 
     } else {
-      if(cell.figure?.color === currentPlayer?.color) setSelectedCell(cell)
+      /* if(cell.figure?.color === currentPlayer?.color) */ setSelectedCell(cell)
       
     }
   }
